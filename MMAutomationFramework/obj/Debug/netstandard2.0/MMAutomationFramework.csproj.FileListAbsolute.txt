@@ -1,0 +1,9 @@
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\bin\Debug\netstandard2.0\MMAutomationFramework.deps.json
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\bin\Debug\netstandard2.0\MMAutomationFramework.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.csprojAssemblyReference.cache
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.csproj.CoreCompileInputs.cache
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.AssemblyInfoInputs.cache
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.AssemblyInfo.cs
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\bin\Debug\netstandard2.0\MMAutomationFramework.pdb
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMAutomationFramework\obj\Debug\netstandard2.0\MMAutomationFramework.pdb
