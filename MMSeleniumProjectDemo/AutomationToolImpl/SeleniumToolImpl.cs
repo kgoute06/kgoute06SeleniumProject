@@ -20,21 +20,22 @@ using ACSUTestAutomation.AutomationToolImpl;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using log4net.Repository.Hierarchy;
+using log4net;
 
 namespace MMSeleniumProjectDemo.AutomationToolImpl
 {
-    public class SeleniumToolImpl  : AutomationInterface
+    public class SeleniumToolImpl : AutomationInterface
     {
-        public  IWebDriver driver = null;
+        public IWebDriver driver = null;
         string browser = null;
-
+        public static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public SeleniumToolImpl(IWebDriver driver)
         {
             this.driver = driver;
         }
 
 
-        public override void EnterTextbyLocator(string locatorName,string pathFindlocator, string testData="")
+        public override void EnterTextbyLocator(string locatorName, string pathFindlocator, string testData = "")
         {
             IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
             var IJavaScriptExecutor = (IJavaScriptExecutor)driver;
@@ -54,7 +55,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
         {
             driver.Close();
             driver.Quit();
-          
+
         }
 
         public override void ClickElement(string locatorName, string pathFindlocator)
@@ -73,16 +74,41 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             Screenshot screenshot = ts.GetScreenshot();
             string pth = System.Reflection.Assembly.GetCallingAssembly().CodeBase;
-            string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + "Reports\\ErrorScreenshots\\"  + screenshotName + screenTime+ ".png";
+            string finalpth = pth.Substring(0, pth.LastIndexOf("bin")) + "Reports\\ErrorScreenshots\\" + screenshotName + screenTime + ".png";
             string localpath = new Uri(finalpth).LocalPath;
             screenshot.SaveAsFile(localpath, ScreenshotImageFormat.Png);
             return localpath;
 
         }
 
-        private By GetLocator(string locatorName,string pathFindlocator)
+        public override bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator,string message="")
         {
-            switch(locatorName.ToString().ToLower())
+            IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
+            var checkboxStatus = element.GetAttribute("checked");
+            if (checkboxStatus == null)
+            {
+                element.Click();
+                logger.Info(message+" is selected");
+            }
+            bool radioCheckBoxStatus = element.Selected;
+
+            return radioCheckBoxStatus;
+
+        }
+
+        public override string SelectTextFromDropdown(string locatorName, string pathFindlocator, string dropdownText)
+        {
+            string dropDownValue = "";
+            SelectElement drpCountry = new SelectElement(driver.FindElement(GetLocator(locatorName, pathFindlocator)));
+            drpCountry.SelectByText(dropdownText);
+            dropDownValue= drpCountry.SelectedOption.Text;
+            return dropDownValue;
+
+        }
+
+        private By GetLocator(string locatorName, string pathFindlocator)
+        {
+            switch (locatorName.ToString().ToLower())
             {
                 case "xpath":
                     return By.XPath(pathFindlocator);
@@ -103,7 +129,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             return null;
         }
 
-        
+
 
     }
 }

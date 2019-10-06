@@ -16,6 +16,8 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract void CloseandQuitApp();
         public abstract void ClickElement(string locatorName, string pathFindlocator);
         public abstract string TakeScreenshot(string screenShotName);
+        public abstract bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator, string message = ""); 
+        public abstract string SelectTextFromDropdown(string locatorName, string pathFindlocator, string message = "");
 
     }
 
