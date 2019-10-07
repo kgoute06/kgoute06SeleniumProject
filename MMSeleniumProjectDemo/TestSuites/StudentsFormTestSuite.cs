@@ -6,6 +6,7 @@ using MMSeleniumProjectDemo.Reports;
 using MMSeleniumProjectDemo.PageObjects;
 using System.Threading;
 using MMSeleniumProjectDemo.TestUtils;
+using System.Collections.Generic;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
@@ -39,7 +40,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
-        public void UsersApplicationFormTest()
+        public void UUTestPractice_Students_Form()
         {
             ExcelLibrary.PopulateInCollection(excelPath, sheetName);
             string fNameData = ExcelLibrary.ReadData(1, "FirstName");
@@ -54,19 +55,64 @@ namespace MMSeleniumProjectDemo.TestSuites
             Assert.True(checkoxStatus, "Cricket Checkbox is checked");
             bool singleRadioButton = wrapperFunctions.SelectingCheckBox_RadioButton("xpath", "/html/body/div[2]/div[1]/div/form/div[3]/label[3]/input", "Single");
             Assert.True(singleRadioButton, "Single Radiobutton is clicked");
-            string dropdowntext = wrapperFunctions.SelectTextFromDropdown("id", "sel1", "Canada");
+            string dropdowntext = wrapperFunctions.DropdownSelectByText("id", "sel1", "Canada");
             if (dropdowntext == "Canda")
             {
-                logger.Info("dro");
+                logger.Info("Canada dropdown selected succesfully");
+            }
+            else
+            {
+                logger.Error("Canada dropdown not selected succesfully");
+                Assert.Fail();
+
+
+            }
+
+        }
+
+        [Test]
+        public void UUTestPractice_Students_Select_SingleDropdownSelection()
+        {
+            wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[8]/a");
+            string dropdowntext = wrapperFunctions.DropdownSelectByText("id", "countriesSingle", "United states of America");
+            if (dropdowntext == "United states of America")
+            {
+                logger.Info("dropdown selected correctly");
             }
             else
             {
                 logger.Error("");
                 Assert.Fail();
-                  
+
 
             }
 
+        }
+
+        [Test]
+        public void UUTestPractice_Students_Select_MultipleDropdownSelection()
+        {
+            List<string> actualDropdownValues = new List<string>();
+            actualDropdownValues.Add("India");
+            actualDropdownValues.Add("United states of America");
+            wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[8]/a");
+            Thread.Sleep(4000);
+            List<string> multipledropValues = wrapperFunctions.MultipleDropdownSelectByText("id", "countriesMultiple", "United states of America", "India");
+
+            for (int i = 0; i < multipledropValues.Count; i++)
+            {
+
+                if (multipledropValues[i].Equals(actualDropdownValues[i]))
+                {
+                    logger.Info("Mulitple dropdown values selected correctly " + multipledropValues[i]);
+                }
+                else
+                {
+                    logger.Error("Mulitple dropdown values selected correctly");
+                    Assert.Fail();
+
+                }
+            }
         }
 
         [TearDown]

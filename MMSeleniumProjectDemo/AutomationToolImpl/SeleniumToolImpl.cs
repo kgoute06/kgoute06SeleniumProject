@@ -96,7 +96,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
         }
 
-        public override string SelectTextFromDropdown(string locatorName, string pathFindlocator, string dropdownText)
+        public override string DropdownSelectByText(string locatorName, string pathFindlocator, string dropdownText)
         {
             string dropDownValue = "";
             SelectElement drpCountry = new SelectElement(driver.FindElement(GetLocator(locatorName, pathFindlocator)));
@@ -105,6 +105,25 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             return dropDownValue;
 
         }
+
+        public override List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownText1,string dropdownText2)
+        {
+            List<string> dropDownValue = new List<string>();
+            SelectElement drpCountry = new SelectElement(driver.FindElement(GetLocator(locatorName, pathFindlocator)));
+            drpCountry.SelectByText(dropdownText1);
+            drpCountry.SelectByText(dropdownText2);
+            // dropDownValue.Add(drpCountry.SelectedOption.Text);
+             IList<IWebElement> multipleDropDown=    drpCountry.AllSelectedOptions.ToList<IWebElement>();
+
+            foreach (IWebElement dropdownvalues in multipleDropDown)
+            {
+                var tableData = dropdownvalues.Text;
+                dropDownValue.Add(tableData);
+            }
+            return dropDownValue;
+
+        }
+
 
         private By GetLocator(string locatorName, string pathFindlocator)
         {
