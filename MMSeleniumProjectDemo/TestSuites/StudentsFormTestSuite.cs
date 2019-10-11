@@ -47,7 +47,7 @@ namespace MMSeleniumProjectDemo.TestSuites
             string lNameData = ExcelLibrary.ReadData(1, "LName");
             Thread.Sleep(5000);
             logger.Info("Entering the FirstName");
-            wrapperFunctions.EnterTextbyLocator(, StudentPageLocator.firstNameIdLocator, fNameData);
+            wrapperFunctions.EnterTextbyLocator("id", StudentPageLocator.firstNameIdLocator, fNameData);
             logger.Info(" Entering the LastName");
             wrapperFunctions.EnterTextbyLocator("id", StudentPageLocator.lastNameIdLocator, lNameData);
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[8]/a");
@@ -185,7 +185,7 @@ namespace MMSeleniumProjectDemo.TestSuites
                 logger.Error("Alter pop winodw is not closed");
                 Assert.Fail();
             }
-
+        }
             private void SwitchPageNavigatioin()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[7]/a");
