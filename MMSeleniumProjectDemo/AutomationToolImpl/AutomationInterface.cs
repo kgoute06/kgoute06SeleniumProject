@@ -11,7 +11,7 @@ namespace ACSUTestAutomation.AutomationToolImpl
 {
     public abstract class AutomationInterface
     {
-        public abstract void EnterTextbyLocator(string locatorName, string pathFindlocator, string testData="");
+        public abstract void EnterTextbyLocator(;, string pathFindlocator, string testData="");
         public abstract void OpenURL(string appUrl);
         public abstract void CloseandQuitApp();
         public abstract void ClickElement(string locatorName, string pathFindlocator);
@@ -20,6 +20,12 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract string DropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName);
 
         public abstract List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName1,string dropdownTextName2);
+        public abstract string GetElementText(string locatorName, string pathFindlocator);
+        public abstract void CustomImplicitWait(int seconds);
+
+        public abstract void SwitchToFrame(string frameName);
+        public abstract string GetTextOnAlert();
+
 
     }
 

@@ -81,14 +81,14 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
         }
 
-        public override bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator,string message="")
+        public override bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator, string message = "")
         {
             IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
             var checkboxStatus = element.GetAttribute("checked");
             if (checkboxStatus == null)
             {
                 element.Click();
-                logger.Info(message+" is selected");
+                logger.Info(message + " is selected");
             }
             bool radioCheckBoxStatus = element.Selected;
 
@@ -101,19 +101,19 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             string dropDownValue = "";
             SelectElement drpCountry = new SelectElement(driver.FindElement(GetLocator(locatorName, pathFindlocator)));
             drpCountry.SelectByText(dropdownText);
-            dropDownValue= drpCountry.SelectedOption.Text;
+            dropDownValue = drpCountry.SelectedOption.Text;
             return dropDownValue;
 
         }
 
-        public override List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownText1,string dropdownText2)
+        public override List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownText1, string dropdownText2)
         {
             List<string> dropDownValue = new List<string>();
             SelectElement drpCountry = new SelectElement(driver.FindElement(GetLocator(locatorName, pathFindlocator)));
             drpCountry.SelectByText(dropdownText1);
             drpCountry.SelectByText(dropdownText2);
             // dropDownValue.Add(drpCountry.SelectedOption.Text);
-             IList<IWebElement> multipleDropDown=    drpCountry.AllSelectedOptions.ToList<IWebElement>();
+            IList<IWebElement> multipleDropDown = drpCountry.AllSelectedOptions.ToList<IWebElement>();
 
             foreach (IWebElement dropdownvalues in multipleDropDown)
             {
@@ -124,7 +124,47 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
         }
 
+        public override string GetElementText(string locatorName, string pathFindlocator)
+        {
+            IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
 
+            var uiText = element.Text;
+
+            return uiText;
+        }
+
+        public override void CustomImplicitWait(int seconds)
+        { 
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
+        }
+
+        public override void SwitchToFrame(string frameName)
+        {
+            driver.SwitchTo().Frame(frameName);
+        }
+
+        public override string GetTextOnAlert()
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.AlertIsPresent());
+            string modalText = string.Empty;
+            if (driver.SwitchTo().Alert() != null)
+            {
+                IAlert modalwindowhandle = driver.SwitchTo().Alert();
+
+                modalText = modalwindowhandle.Text;
+                modalwindowhandle.Accept();
+
+            }
+            else
+            {
+                logger.Info("Alert is not present..");
+
+            }
+
+            return modalText;
+
+        }
         private By GetLocator(string locatorName, string pathFindlocator)
         {
             switch (locatorName.ToString().ToLower())
