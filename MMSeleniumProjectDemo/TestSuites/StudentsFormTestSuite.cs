@@ -39,6 +39,8 @@ namespace MMSeleniumProjectDemo.TestSuites
 
         }
 
+
+
         [Test]
         public void UUTestPractice_Students_Form()
         {
@@ -167,7 +169,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
-        public void UUTestPractice_Students_Switchto_ConfirmHandling()
+        public void UUTestPractice_Students_Switchto_AlertConfirmHandling()
         {
             string expectedAlterPopwindowTex = "Hello Alert";
             //Navigate  to Switch tab
@@ -186,7 +188,29 @@ namespace MMSeleniumProjectDemo.TestSuites
                 Assert.Fail();
             }
         }
-            private void SwitchPageNavigatioin()
+
+        [Test]
+        public void UUTestPractice_Students_Switchto_PromptConfirmHandling()
+        {
+            string expectedAlterPopwindowTex = "Hello Alert";
+            string actualPromptText = "Hello Hello Alert! How are you today?";
+            //Navigate  to Switch tab
+            SwitchPageNavigatioin();
+            wrapperFunctions.CustomImplicitWait(50);
+            wrapperFunctions.ClickElement("id", "prompt");
+           string promptPopwindowText= wrapperFunctions.PromptAlert(expectedAlterPopwindowTex);
+            string confirmationAlertText = wrapperFunctions.GetElementText("id", "demo");
+            if (actualPromptText.Equals(promptPopwindowText))
+            {
+                logger.Info("Alter pop winodw closed and text is  " + confirmationAlertText);
+            }
+            else
+            {
+                logger.Error("Alter pop winodw is not closed");
+                Assert.Fail();
+            }
+        }
+        private void SwitchPageNavigatioin()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[7]/a");
         }
@@ -207,6 +231,22 @@ namespace MMSeleniumProjectDemo.TestSuites
         public void TestFixtureTearDown()
         {
             // Clean up once per fixture
+        }
+
+       
+    }
+
+    public static class EnumSeleniumLocators
+    {
+        enum SeleniumLocators
+        {
+            id,
+            xpath,
+            classname,
+            name,
+            tagname,
+            link
+
         }
     }
 }

@@ -1,14 +1,21 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.IO;
 using System.Text;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MMSeleniumProjectDemo.TestUtils;
 
 namespace MMSeleniumProjectDemo
 {
     [TestClass]
     public class Test
     {
+        string appUrl2 = ConfigurationManager.AppSettings["AppUrl2"];
+        string browser = ConfigurationManager.AppSettings["Browser"];
+        string excelPath = ConfigurationManager.AppSettings["Excelpath"];
+        string sheetName = ConfigurationManager.AppSettings["sheetName"];
         [TestMethod]
         public void TestMethod1()
         {
@@ -44,6 +51,32 @@ namespace MMSeleniumProjectDemo
                 Console.WriteLine(row.Table);
             }
         }
+
+        [TestMethod]
+        public void TestDataFileConnection()
+        {
+            var path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
+            path = path.Substring(6) + @"\Data\TestData.xlsx";
+            var con = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;Data Source = {0}; Extended Properties=Excel 12.0;", path);
+
+            string subStringTest = "Krishna goute sathvik dhurvik";
+            subStringTest = subStringTest.Substring(6);
+            Console.WriteLine(subStringTest);
+
+
+
+
+        }
+
+       // Read Data from excel in selenium c# using from a cell
+       [TestMethod]
+        public void ReadExcelData1()
+        {
+         List<string> data1 =   ExcelDataReading_MicrosoftOfficeInteropExcel.ReadExecl_MicrosoftOfficeInteropExcel(excelPath, sheetName);
+
+
+        }
+
 
         static DataTable GetTable()
         {
@@ -99,6 +132,10 @@ namespace MMSeleniumProjectDemo
         }
 
         [TestMethod]
+
+   
+
+ 
 
         public void GetPathofProject()
         {

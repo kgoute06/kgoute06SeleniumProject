@@ -25,6 +25,10 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
         public abstract void SwitchToFrame(string frameName);
         public abstract string GetTextOnAlert();
+        public abstract string PromptAlert(string TestdataforPromptTextbox);
+
+
+
 
 
     }

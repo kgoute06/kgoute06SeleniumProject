@@ -134,7 +134,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
         }
 
         public override void CustomImplicitWait(int seconds)
-        { 
+        {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
         }
 
@@ -165,6 +165,48 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             return modalText;
 
         }
+
+        public override string PromptAlert(string TestdataforPromptTextbox)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(2));
+            wait.Until(ExpectedConditions.AlertIsPresent());
+
+            driver.SwitchTo().Alert().SendKeys(TestdataforPromptTextbox);
+            IAlert promptpopup = driver.SwitchTo().Alert();
+
+            string promptpopuppopupdata = promptpopup.Text;
+            promptpopup.Accept();
+
+            return promptpopuppopupdata;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         private By GetLocator(string locatorName, string pathFindlocator)
         {
             switch (locatorName.ToString().ToLower())
