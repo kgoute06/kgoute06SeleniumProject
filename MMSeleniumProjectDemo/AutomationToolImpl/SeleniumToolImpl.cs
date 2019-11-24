@@ -21,6 +21,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
 using log4net.Repository.Hierarchy;
 using log4net;
+using System.Diagnostics;
 
 namespace MMSeleniumProjectDemo.AutomationToolImpl
 {
@@ -180,31 +181,59 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             return promptpopuppopupdata;
         }
 
+        public override void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90)
+        {
 
+            try
+            {
+                bool windowFound = false;
 
+            
 
+                string currwintitle = string.Empty;
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
+                while (!windowFound && sw.Elapsed.TotalSeconds < timeout)
+                {
+                    var windowHandles = driver.WindowHandles;
 
+                    foreach (var window in windowHandles)
+                    {
+                        currwintitle = driver.SwitchTo().Window(window).Title;
+                        if (currwintitle.Equals(windowTitle))
+                        {
+                            windowFound = true;
+                            driver.Close();
+                            break;
+                       
+                        }
 
+                    }
 
+                    Thread.Sleep(500);
+                    logger.Info("waiting for pop up window to appear..");
 
+                }
 
+                if (!windowFound)
+                    driver.SwitchTo().DefaultContent();
 
+            }
+            catch (Exception e)
+            {
+                turnOnImplicitWaits();
+            }
 
+            turnOnImplicitWaits();
+        }
 
+        public void turnOnImplicitWaits()
+        {
+            int implicitWait = Convert.ToInt32(ConfigurationManager.AppSettings["ImplicitWaitInSecs"]);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWait);
 
-
-
-
-
-
-
-
-
-
-
-
-
+        }
 
 
         private By GetLocator(string locatorName, string pathFindlocator)
@@ -225,6 +254,8 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
                     return By.PartialLinkText(pathFindlocator);
                 case "tagname":
                     return By.TagName(pathFindlocator);
+                case "linktext":
+                    return By.LinkText(pathFindlocator);
             }
 
             return null;

@@ -210,6 +210,26 @@ namespace MMSeleniumProjectDemo.TestSuites
                 Assert.Fail();
             }
         }
+
+        [Test]
+        public void UUTestPractice_Students_Switchto_HandlingMultipleWindowHandles()
+        {
+            SwitchPageNavigatioin();
+            ClickonLinkText();
+            wrapperFunctions.SwitchBetweenDifferentWindows("Testing Controls");
+            Console.WriteLine("Before click");
+            Console.WriteLine("Number of windows opened by selenium : " + driver.WindowHandles.Count);
+            foreach (var item in driver.WindowHandles)
+            {
+                Console.WriteLine(item);
+            }
+        }
+
+        private void ClickonLinkText()
+        {
+            wrapperFunctions.ClickElement("linktext", "Opens in a new window");
+        }
+
         private void SwitchPageNavigatioin()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[7]/a");

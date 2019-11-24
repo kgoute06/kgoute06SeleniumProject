@@ -27,6 +27,8 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract string GetTextOnAlert();
         public abstract string PromptAlert(string TestdataforPromptTextbox);
 
+        public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
+
 
 
 

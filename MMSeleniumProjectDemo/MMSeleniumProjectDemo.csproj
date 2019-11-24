@@ -131,10 +131,11 @@
     <Compile Include="TestUtils\ExcelLibrary.cs" />
     <Compile Include="TestUtils\TestModuleBase.cs" />
     <Compile Include="Test.cs" />
-    <Compile Include="InterviewPrograms.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="license" />
     <None Include="packages.config" />
   </ItemGroup>

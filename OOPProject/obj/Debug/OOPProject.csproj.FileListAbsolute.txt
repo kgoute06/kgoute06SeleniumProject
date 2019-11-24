@@ -1,0 +1,14 @@
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\OOPProject.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\OOPProject.pdb
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\obj\Debug\OOPProject.csprojAssemblyReference.cache
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\obj\Debug\OOPProject.csproj.CoreCompileInputs.cache
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\obj\Debug\OOPProject.csproj.CopyComplete
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\obj\Debug\OOPProject.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\OOPProject\obj\Debug\OOPProject.pdb
