@@ -127,8 +127,10 @@
     <Compile Include="Reports\ExtentReportsManager.cs" />
     <Compile Include="TestData\SeleniumLocator.cs" />
     <Compile Include="TestSuites\StudentsFormTestSuite.cs" />
+    <Compile Include="TestSuites\WebTableHandlingSuite.cs" />
     <Compile Include="TestUtils\ExcelDataReading_MicrosoftOfficeInteropExcel.cs" />
     <Compile Include="TestUtils\ExcelLibrary.cs" />
+    <Compile Include="TestUtils\SeleniuimUtilies.cs" />
     <Compile Include="TestUtils\TestModuleBase.cs" />
     <Compile Include="Test.cs" />
   </ItemGroup>

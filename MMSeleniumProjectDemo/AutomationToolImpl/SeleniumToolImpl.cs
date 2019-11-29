@@ -188,7 +188,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             {
                 bool windowFound = false;
 
-            
+
 
                 string currwintitle = string.Empty;
                 Stopwatch sw = new Stopwatch();
@@ -206,7 +206,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
                             windowFound = true;
                             driver.Close();
                             break;
-                       
+
                         }
 
                     }
@@ -234,6 +234,47 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(implicitWait);
 
         }
+
+        public override string GetTextFromTable(string locatorName, string pathFindlocator, string expectedText)
+        {
+            var elemTable = driver.FindElement(GetLocator(locatorName, pathFindlocator));
+
+            // Fetch all Row of the table
+            List<IWebElement> lstTrElem = new List<IWebElement>(elemTable.FindElements(By.TagName("tr")));
+            String actualRowData = "";
+
+            // Traverse each row
+            foreach (var elemTr in lstTrElem)
+            {
+                // Fetch the columns from a particuler row
+                List<IWebElement> lstTdElem = new List<IWebElement>(elemTr.FindElements(By.TagName("td")));
+                if (lstTdElem.Count > 0)
+                {
+                    // Traverse each column
+                    foreach (var elemTd in lstTdElem)
+                    {
+                        // "\t\t" is used for Tab Space between two Text
+                        actualRowData = elemTd.Text;
+                        if (actualRowData.Equals(expectedText))
+                            break;
+
+                    }
+                 
+                }
+                if (actualRowData.Equals(expectedText))
+                    break;
+
+
+
+
+
+
+            }
+
+            return actualRowData;
+        }
+
+       
 
 
         private By GetLocator(string locatorName, string pathFindlocator)

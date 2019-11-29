@@ -29,6 +29,11 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
         public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
 
+        public abstract string GetTextFromTable(string locatorName, string pathFindlocator,string expectedText);
+     
+
+       
+
 
 
 
