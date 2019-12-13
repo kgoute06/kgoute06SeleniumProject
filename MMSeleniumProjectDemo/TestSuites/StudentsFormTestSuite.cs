@@ -7,6 +7,8 @@ using MMSeleniumProjectDemo.PageObjects;
 using System.Threading;
 using MMSeleniumProjectDemo.TestUtils;
 using System.Collections.Generic;
+using System.IO;
+using MMSeleniumProjectDemo.TestData;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
@@ -20,8 +22,8 @@ namespace MMSeleniumProjectDemo.TestSuites
         string excelPath = ConfigurationManager.AppSettings["Excelpath"];
         string sheetName = ConfigurationManager.AppSettings["sheetName"];
 
+        string baseDirpath = baseDir + "";
 
-        
         ExtentReports testrepo = ExtentReportsManager.GetExtentInstanceReport();
 
 
@@ -44,6 +46,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         [Test]
         public void UUTestPractice_Students_Form()
         {
+            
             ExcelLibrary.PopulateInCollection(excelPath, sheetName);
             string fNameData = ExcelLibrary.ReadData(1, "FirstName");
             string lNameData = ExcelLibrary.ReadData(1, "LName");
@@ -75,6 +78,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         [Test]
         public void UUTestPractice_Students_Select_SingleDropdownSelection()
         {
+           
             
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[8]/a");
             string dropdowntext = wrapperFunctions.DropdownSelectByText("id", "countriesSingle", "United states of America");
@@ -233,6 +237,16 @@ namespace MMSeleniumProjectDemo.TestSuites
         private void SwitchPageNavigatioin()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[7]/a");
+        }
+
+
+        [Test]
+        public void scroolBarTest()
+        {
+
+            wrapperFunctions.OpenURL("http://demo.guru99.com/test/guru99home");
+            wrapperFunctions.ScrollPage("down");
+            wrapperFunctions.ScrollPage("up");
         }
 
 

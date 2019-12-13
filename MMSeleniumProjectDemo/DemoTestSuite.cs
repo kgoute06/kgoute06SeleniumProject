@@ -13,6 +13,7 @@ using ACSUTestAutomation.AutomationToolImpl;
 
 using MMSeleniumProjectDemo.PageObjects;
 using System.Collections.Generic;
+using MMSeleniumProjectDemo.TestData;
 
 namespace MMSeleniumProjectDemo
 {
@@ -36,7 +37,7 @@ namespace MMSeleniumProjectDemo
         [TestMethod]
         public void MercuryLoginPage()
         {
-            
+        
             SetDriver();
             Thread.Sleep(5000);
             

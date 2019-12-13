@@ -45,10 +45,31 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\MSTest.TestFramework.1.3.2\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="Optum.CAC.Automation.OptumAutomationFramework">
+      <HintPath>..\MMSeleniumProjectDemo\Optum.CAC.Automation.OptumAutomationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Optum.eCAC.Core.DTO">
+      <HintPath>..\MMSeleniumProjectDemo\Optum.eCAC.Core.DTO.dll</HintPath>
+    </Reference>
+    <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="WebDriver, Version=3.10.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.10.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractionPrograms\AbstractionDemo.cs" />
+    <Compile Include="AbstractionPrograms\AbstractionProgramTest.cs" />
+    <Compile Include="AccessModifier1\InternalAccessModifier.cs" />
+    <Compile Include="AccessModifier1\PrivateAccessmodifier.cs" />
+    <Compile Include="AccessModifier1\ProtecetdProgramClass.cs" />
+    <Compile Include="AccessModifier1\ProtectedInternalClass.cs" />
+    <Compile Include="AccessModifier1\Public_Student.cs" />
+    <Compile Include="AccessModifier1\AccessModifierTest.cs" />
     <Compile Include="FileOperations.cs" />
     <Compile Include="InheritanceEmployeeProgram.cs" />
     <Compile Include="InterviewPrograms.cs" />

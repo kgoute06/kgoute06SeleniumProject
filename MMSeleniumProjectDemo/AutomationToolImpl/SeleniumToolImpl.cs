@@ -22,6 +22,7 @@ using System.Drawing;
 using log4net.Repository.Hierarchy;
 using log4net;
 using System.Diagnostics;
+using System.ComponentModel;
 
 namespace MMSeleniumProjectDemo.AutomationToolImpl
 {
@@ -35,6 +36,19 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             this.driver = driver;
         }
 
+        public override void OpenURL(string appUrl)
+        {
+            driver.Manage().Window.Maximize();
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(100);
+            driver.Navigate().GoToUrl(appUrl);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="locatorName"></param>
+        /// <param name="pathFindlocator"></param>
+        /// <param name="testData"></param>
 
         public override void EnterTextbyLocator(string locatorName, string pathFindlocator, string testData = "")
         {
@@ -46,17 +60,17 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             element.SendKeys(testData);
         }
 
-        public override void OpenURL(string appUrl)
-        {
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(appUrl);
-        }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public override void CloseandQuitApp()
         {
-            driver.Close();
-            driver.Quit();
-
+            if (driver != null)
+            {
+                driver.Close();
+                driver.Quit();
+            }
         }
 
         public override void ClickElement(string locatorName, string pathFindlocator)
@@ -125,6 +139,13 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
         }
 
+
+        /// <summary>
+        /// This method will return the inner text for the specified web element 
+        /// </summary>
+        /// <param name="locatorName"></param>
+        /// <param name="pathFindlocator"></param>
+        /// <returns></returns>
         public override string GetElementText(string locatorName, string pathFindlocator)
         {
             IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
@@ -137,6 +158,9 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
         public override void CustomImplicitWait(int seconds)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
+
+           
+
         }
 
         public override void SwitchToFrame(string frameName)
@@ -263,19 +287,236 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
                 }
                 if (actualRowData.Equals(expectedText))
                     break;
-
-
-
-
-
-
+                
             }
 
             return actualRowData;
         }
 
-       
 
+        public override void ScrollPage(string scrolloption)
+        {
+            IJavaScriptExecutor js = ((IJavaScriptExecutor)driver);
+            switch (scrolloption.ToLower())
+            {
+                case "up":
+                    js.ExecuteScript("window.scrollTo(document.body.scrollHeight,0)");
+                    break;
+                case "down":
+                    js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight)");
+                    break;
+                case "right":
+                    js.ExecuteScript("window.scrollBy(4000,0)");
+                    break;
+                case "left":
+                    js.ExecuteScript("window.scrollBy(-4000,0)");
+                    break;
+            }
+        }
+
+        public override void ClickFirstElement(string locatorName, string pathFindlocator)
+        {
+            /// No Need of Test Data object here...
+            IList<IWebElement> elements = GetElements(locatorName, pathFindlocator);
+
+            foreach (IWebElement ele in elements)
+            {
+                if (ele.Enabled)
+                    ele.Click();
+                else
+                {
+                    String errMsg = "Element is not enabled on the DOM with locator :" + ele.Text;
+                    logger.Error(errMsg);
+                    throw new Exception(errMsg);
+                }
+
+                break;
+
+            }
+        }
+
+        //DotNetSeleniumExtras.WaitHelpers
+        public override void WaitTillElementAppears(string locatorName, string pathFindlocator, int timeout)
+        {
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+            try
+            {
+                logger.Info("Waiting for the element to be visible");
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(GetLocator(locatorName, pathFindlocator)));
+                logger.Info("element is visible");
+            }
+            catch (Exception e)
+            {
+                logger.Error("No Element Found: ", e);
+                throw e;
+            }
+        }
+
+        //DotNetSeleniumExtras.WaitHelpers
+
+        public override void WaitTillElementIsClickable(string locatorName, string pathFindlocator, int timeout)
+        {
+            logger.Info("Waiting for element to be clickable");
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(timeout));
+            wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(GetLocator(locatorName, pathFindlocator)));
+            logger.Info("Done Waiting");
+        }
+
+        public override void UnselectAllCheckboxes(string locatorName, string pathFindlocator)
+        {
+            IList<IWebElement> element = GetElements(locatorName, pathFindlocator);
+            for (int i = 0; i < element.Count; i++)
+            {
+                if (element[i].Selected & element[i].Enabled)
+                {
+                    element[i].Click();
+                    //ClickElement(locator, testData);
+                }
+            }
+        }
+
+        public override void SelectSingleCheckbox(string locatorName, string pathFindlocator)
+        {
+            IWebElement element = GetElement(locatorName, pathFindlocator);
+            scrollElement(element);
+            if (!element.Selected)
+            {
+                if (element.Enabled)
+                    element.Click();
+                else
+                {
+                    String errMsg = "Element is not enabled on the DOM with locator :" + element.Text;
+                    logger.Error(errMsg);
+                    //throw new Exception(errMsg);
+                }
+            }
+
+        }
+
+        /// <summary>
+        /// check if the driver is active or closed and return true or false accordingly
+        /// </summary>
+        /// <returns></returns>
+        public override bool isChildWindowClosed()
+        {
+            if (driver.WindowHandles.Count() == 1)
+                return true;
+            else
+                return false;
+        }
+
+
+        public void scrollElement(IWebElement webElement)
+        {
+            try
+            {
+                IJavaScriptExecutor executor = (IJavaScriptExecutor)driver;
+                executor.ExecuteScript("arguments[0].scrollIntoView(true);", webElement);
+                //logger.Info("Scrolled to the Element.. ");
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public IWebElement GetElement(string locatorName, string pathFindlocator)
+        {
+            IList<IWebElement> elements = GetElements(locatorName, pathFindlocator);
+            return elements[0];
+        }
+
+        public override void Doubleclick(string locatorName, string pathFindlocator)
+        {
+            IList<IWebElement> elements = GetElements(locatorName, pathFindlocator);
+            Actions action = new Actions(driver);
+
+            foreach (IWebElement ele in elements)
+            {
+                if (ele.Enabled)
+                {
+                    action.DoubleClick(ele);
+                    action.Perform();
+                }
+                else
+                {
+                    String errMsg = "Element is not enabled on the DOM with locator :" + ele.Text;
+                    logger.Error(errMsg);
+                    throw new Exception(errMsg);
+                }
+            }
+        }
+
+
+        public override String GetCurrentPageURL()
+        {
+            return driver.Url;
+        }
+
+        public override void CloseDriverInstances()
+        {
+            try
+            {
+
+                foreach (var proc in Process.GetProcessesByName("IEDriverServer"))
+                {
+                    proc.Kill();
+                }
+            }
+            catch (Win32Exception e)
+            {
+                logger.Info("The process is terminating or could not be terminated." + e.Message);
+            }
+            catch (InvalidOperationException e)
+            {
+                logger.Info("The process has already exited." + e.Message);
+            }
+
+            catch (Exception e)  // some other exception
+            {
+                logger.Info("{0} Exception caught.", e);
+            }
+        }
+
+        public override List<String> FindChildElementText(string locatorName, string pathFindlocator)
+        {
+            IList<IWebElement> elements = GetElements(locatorName, pathFindlocator);
+            List<String> elementText = new List<String>();
+            foreach (IWebElement element in elements)
+            {
+                if (!element.Text.Equals(""))
+                {
+                    elementText.Add(element.Text);
+                }
+            }
+            return elementText;
+        }
+
+
+
+
+
+
+
+
+
+
+        public IList<IWebElement> GetElements(string locatorName, string pathFindlocator)
+        {
+            IList<IWebElement> elements = new List<IWebElement>();
+            /// If we want to search on a particualr webElement add it into locator object...
+            /// if (locator.)
+            elements = driver.FindElements(GetLocator(locatorName, pathFindlocator));
+
+            if (elements.Count == 0)
+            {
+                String errMsg = "Couldn't find the WebElement on the DOM: ";
+                logger.Error(errMsg);
+                throw new Exception(errMsg);
+            }
+            else
+                return elements;
+        }
 
         private By GetLocator(string locatorName, string pathFindlocator)
         {

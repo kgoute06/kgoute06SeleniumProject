@@ -21,16 +21,18 @@ namespace MMSeleniumProjectDemo
     {
         public IWebDriver driver;
         public AutomationInterface wrapperFunctions;
-        string browser = ConfigurationManager.AppSettings["Browser"];
-        
+       public static string browser = ConfigurationManager.AppSettings["Browser"];
+       public static  string baseDir;
+        public CommonUtils utils;
+
 
         public static readonly ILog logger = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
         public TestModuleBase()
         {
             driver = SetWebDriver(browser); 
             wrapperFunctions = new SeleniumToolImpl(driver);
-            
-
+            baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            utils = new CommonUtils();
 
         }
 

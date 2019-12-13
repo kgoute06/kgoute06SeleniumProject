@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using OOPProject.AccessModifier1;
 
 namespace OOPProject
 {
@@ -8,6 +9,7 @@ namespace OOPProject
     {
         PartTimeEmployee pTimeEmp = new PartTimeEmployee();
         FullTimeEmployee fTimeEmp = new FullTimeEmployee();
+
         [TestMethod]
         public void InheritanceTestMethod1()
         {
@@ -27,7 +29,21 @@ namespace OOPProject
             Console.WriteLine(pTimeEmp.monthalySalary);
         }
 
+        
+    }
+}
+namespace KrishnaNamespace
+{
+    [TestClass]
+    public class InheritanceProgramTest
+    {
+        [TestMethod]
+        public void InternalTest1()
+        {
+            InternalAccessModifier a = new InternalAccessModifier();
+            a.setData(1, 4);
+            a.displayData();
 
-       
+        }
     }
 }

@@ -149,3 +149,10 @@ C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo
 C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\HtmlAgilityPack.dll
 C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\HtmlAgilityPack.xml
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\SeleniumExtras.WaitHelpers.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\Optum.CAC.Automation.OptumAutomationFramework.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\Optum.eCAC.Core.DTO.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\TATASeleniumImpl.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\YamlDotNet.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\kgoute\source\repos\MindMajixSeleniumDemoSolution\MMSeleniumProjectDemo\bin\Debug\TATAFramework.dll

@@ -14,6 +14,7 @@ namespace MMSeleniumProjectDemo.TestSuites
     [TestFixture]
     public class WebTableHandlingSuite :  TestModuleBase
     {
+      
         string tableAutoUrl = ConfigurationManager.AppSettings["tableAutoUrl"];
 
         [SetUp]
