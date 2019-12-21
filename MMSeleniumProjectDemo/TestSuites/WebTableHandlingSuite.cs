@@ -32,8 +32,18 @@ namespace MMSeleniumProjectDemo.TestSuites
 
             Assert.Equals(expectedText, actualtextfromTable);
 
-
            
+        }
+
+        [Test]
+        public void WebTableTesting_TagName()
+        {
+            string expectedText = "1,600,000,000";
+            string actualtextfromTable = wrapperFunctions.GetTextFromTable("tagname", "table", expectedText);
+
+            Assert.Equals(expectedText, actualtextfromTable);
+
+
         }
 
         [Test]

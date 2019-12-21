@@ -96,6 +96,15 @@
           "lib/netstandard1.0/_._": {}
         }
       },
+      "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
+        "type": "package",
+        "compile": {
+          "lib/net20/Microsoft.Office.Interop.Outlook.dll": {}
+        },
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Outlook.dll": {}
+        }
+      },
       "Microsoft.Win32.Primitives/4.0.1": {
         "type": "package",
         "dependencies": {
@@ -1738,6 +1747,18 @@
         "microsoft.netcore.targets.1.1.0.nupkg.sha512",
         "microsoft.netcore.targets.nuspec",
         "runtime.json"
+      ]
+    },
+    "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
+      "sha512": "7tvZ8vtSemSxJxrarL/i3oYuha4ElXxvrjFfuWL0s5vmKVDHXjY72+Ed6S4xCPH+qDGEZYd49ObdGT7PC8BegQ==",
+      "type": "package",
+      "path": "microsoft.office.interop.outlook/15.0.4797.1003",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/Microsoft.Office.Interop.Outlook.dll",
+        "microsoft.office.interop.outlook.15.0.4797.1003.nupkg.sha512",
+        "microsoft.office.interop.outlook.nuspec"
       ]
     },
     "Microsoft.Win32.Primitives/4.0.1": {
@@ -5826,6 +5847,7 @@
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
       "DotNetSeleniumExtras.WaitHelpers >= 3.11.0",
+      "Microsoft.Office.Interop.Outlook >= 15.0.4797.1003",
       "NETStandard.Library >= 2.0.3",
       "Selenium.Chrome.WebDriver >= 76.0.0",
       "Selenium.Firefox.WebDriver >= 0.24.0",
@@ -5883,6 +5905,10 @@
             "target": "Package",
             "version": "[3.11.0, )"
           },
+          "Microsoft.Office.Interop.Outlook": {
+            "target": "Package",
+            "version": "[15.0.4797.1003, )"
+          },
           "NETStandard.Library": {
             "suppressParent": "All",
             "target": "Package",
@@ -5929,5 +5955,17 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Microsoft.Office.Interop.Outlook 15.0.4797.1003' was restored using '.NETFramework,Version=v4.6.1' instead of the project target framework '.NETStandard,Version=v2.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Microsoft.Office.Interop.Outlook",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

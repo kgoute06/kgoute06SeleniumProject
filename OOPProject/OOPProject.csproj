@@ -56,6 +56,15 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Entity.Design" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Data.Services" />
+    <Reference Include="System.Data.Services.Client" />
+    <Reference Include="System.Data.SqlXml" />
     <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=3.10.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Selenium.WebDriver.3.10.0\lib\net45\WebDriver.dll</HintPath>
@@ -70,6 +79,7 @@
     <Compile Include="AccessModifier1\ProtectedInternalClass.cs" />
     <Compile Include="AccessModifier1\Public_Student.cs" />
     <Compile Include="AccessModifier1\AccessModifierTest.cs" />
+    <Compile Include="Collections\ConvertDataTable_List\Student.cs" />
     <Compile Include="FileOperations.cs" />
     <Compile Include="InheritanceEmployeeProgram.cs" />
     <Compile Include="InterviewPrograms.cs" />

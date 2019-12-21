@@ -23,6 +23,7 @@ using log4net.Repository.Hierarchy;
 using log4net;
 using System.Diagnostics;
 using System.ComponentModel;
+using System.Collections.ObjectModel;
 
 namespace MMSeleniumProjectDemo.AutomationToolImpl
 {
@@ -42,6 +43,19 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(100);
             driver.Navigate().GoToUrl(appUrl);
         }
+
+        public override void OpenNewTabInSameBrowserInstance(string url)
+        {
+            string firstTabHandle = driver.CurrentWindowHandle;
+            driver.SwitchTo().Window(firstTabHandle);
+            driver.FindElement(By.CssSelector("Body")).SendKeys(Keys.Control + "t");
+            string secondTabHandle = driver.CurrentWindowHandle;
+            driver.SwitchTo().Window(secondTabHandle);
+            string secondPageUrl = url;
+            driver.Navigate().GoToUrl(secondPageUrl);
+            Thread.Sleep(2000);
+        }
+
 
         /// <summary>
         /// 
@@ -81,6 +95,47 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             element.Click();
 
         }
+
+        public override List<string> ListofRadioorcheckbox(string locatorName, string pathFindlocator)
+        {
+            List<string> radiocheckbox = new List<string>();
+          ReadOnlyCollection<IWebElement> rc=  driver.FindElements(GetLocator(locatorName, pathFindlocator));
+            foreach (var item in rc)
+            {
+             var rcstatus=   item.GetAttribute("checked");
+                
+               string radios= item.Text;
+                radiocheckbox.Add(item.Text);
+            }
+
+            return radiocheckbox;
+
+
+        }
+
+        public override void ReadAllHyperLinksandClickonSpecificHyperLink(string anchorLinkName)
+        {
+            List<string> anchorsText = new List<string>();
+            ReadOnlyCollection<IWebElement> anchorLists = driver.FindElements(By.TagName("a"));
+            foreach (var anchor in anchorLists)
+            {
+                if(anchor.Text.Length>0)
+                {
+                    anchorsText.Add(anchor.Text);
+                    if (anchor.Text.Contains(anchorLinkName))
+                    {
+                        anchor.Click();
+
+                    }
+                }
+              
+            }
+
+            logger.Info("" + anchorsText);
+           
+
+        }
+
 
         public override string TakeScreenshot(string screenshotName)
         {
@@ -528,7 +583,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
                     return By.Id(pathFindlocator);
                 case "name":
                     return By.Name(pathFindlocator);
-                case "class":
+                case "classname":
                     return By.ClassName(pathFindlocator);
                 case "css":
                     return By.CssSelector(pathFindlocator);

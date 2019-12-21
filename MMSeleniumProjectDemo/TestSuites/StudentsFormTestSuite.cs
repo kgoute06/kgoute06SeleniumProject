@@ -9,6 +9,7 @@ using MMSeleniumProjectDemo.TestUtils;
 using System.Collections.Generic;
 using System.IO;
 using MMSeleniumProjectDemo.TestData;
+using System.Collections.ObjectModel;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
@@ -40,6 +41,21 @@ namespace MMSeleniumProjectDemo.TestSuites
             wrapperFunctions.OpenURL(appUrl2);
 
         }
+
+        [Test]
+        public void UUTestPractice_Students_Form_RadiobuttonByUsingLIst()
+        {
+          List<string> radiobutonscontrainer=  wrapperFunctions.ListofRadioorcheckbox("classname", "radio-inline");
+
+            foreach (var item in radiobutonscontrainer)
+            {
+                Console.WriteLine(item);
+            }
+
+
+
+        }
+
 
 
 
@@ -200,7 +216,9 @@ namespace MMSeleniumProjectDemo.TestSuites
             string actualPromptText = "Hello Hello Alert! How are you today?";
             //Navigate  to Switch tab
             SwitchPageNavigatioin();
+            #region
             wrapperFunctions.CustomImplicitWait(50);
+            #endregion
             wrapperFunctions.ClickElement("id", "prompt");
            string promptPopwindowText= wrapperFunctions.PromptAlert(expectedAlterPopwindowTex);
             string confirmationAlertText = wrapperFunctions.GetElementText("id", "demo");
@@ -241,10 +259,20 @@ namespace MMSeleniumProjectDemo.TestSuites
 
 
         [Test]
-        public void scroolBarTest()
+        public void scrollBarTest_Guru99()
         {
 
-            wrapperFunctions.OpenURL("http://demo.guru99.com/test/guru99home");
+            wrapperFunctions.OpenURL("http://www.uitestpractice.com/Students/Form");
+            wrapperFunctions.ReadAllHyperLinksandClickonSpecificHyperLink("Select");
+            wrapperFunctions.ScrollPage("down");
+            wrapperFunctions.ScrollPage("up");
+        }
+
+        [Test]
+        public void scrollBarTest_Student_Controls()
+        {
+
+            wrapperFunctions.OpenURL("");
             wrapperFunctions.ScrollPage("down");
             wrapperFunctions.ScrollPage("up");
         }
@@ -254,6 +282,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         [TearDown]
         public void TearDown()
         {
+           
             // Clean up after each test
             wrapperFunctions.TakeScreenshot("MecuryLoginscreenshot");
             var status = TestContext.CurrentContext.Result.Outcome.Status;

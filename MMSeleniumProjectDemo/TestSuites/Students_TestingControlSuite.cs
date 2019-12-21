@@ -4,6 +4,7 @@ using System.Configuration;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MMSeleniumProjectDemo.TestModels;
 using NUnit.Framework;
+using Assert = NUnit.Framework.Assert;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
@@ -31,24 +32,36 @@ namespace MMSeleniumProjectDemo.TestSuites
         {
             string currentUrl = wrapperFunctions.GetCurrentPageURL();
 
+        }
+
+        [Test]
+        public void ReadTabledata_TestingControles()
+        {
+            
+
             List<string> childEle = wrapperFunctions.FindChildElementText("xpath", "//div[1]/table/tbody");
 
             foreach (var item in childEle)
             {
-                Student_TestingControlModel tcmode = new Student_TestingControlModel();
+                
                 if (!string.IsNullOrEmpty(item))
                 {
-                    List<Student_TestingControlModel> stdTabledata = new List<Student_TestingControlModel>();
+                    
                     var res = item.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
 
                     foreach (var item1 in res)
                     {
-                        Console.WriteLine(item1);
+                        if(item1.Contains("Sterling"))
+                        {
+                            Console.WriteLine(item1);
+                        }
+                        else
+                        {
+                            Assert.Fail();
+                        }
+                     
                     }
-                 
-
-
-                    stdTabledata.Add(tcmode);
+   
 
                 }
             }

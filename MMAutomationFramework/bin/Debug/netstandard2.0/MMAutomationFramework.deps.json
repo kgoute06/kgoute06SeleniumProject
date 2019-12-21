@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETStandard,Version=v2.0/",
-    "signature": "abdbea52fc8196a00990f6ee49469b21b2b41d0a"
+    "signature": "b9074338f7bc363dc40d4718863f8772806a3a9c"
   },
   "compilationOptions": {},
   "targets": {
@@ -10,6 +10,7 @@
       "MMAutomationFramework/1.0.0": {
         "dependencies": {
           "DotNetSeleniumExtras.WaitHelpers": "3.11.0",
+          "Microsoft.Office.Interop.Outlook": "15.0.4797.1003",
           "NETStandard.Library": "2.0.3",
           "Selenium.Chrome.WebDriver": "76.0.0",
           "Selenium.Firefox.WebDriver": "0.24.0",
@@ -99,6 +100,14 @@
       },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "Microsoft.NETCore.Targets/1.1.0": {},
+      "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
+        "runtime": {
+          "lib/net20/Microsoft.Office.Interop.Outlook.dll": {
+            "assemblyVersion": "15.0.0.0",
+            "fileVersion": "15.0.4797.1003"
+          }
+        }
+      },
       "Microsoft.Win32.Primitives/4.0.1": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0",
@@ -1231,6 +1240,13 @@
       "sha512": "sha512-aOZA3BWfz9RXjpzt0sRJJMjAscAUm3Hoa4UWAfceV9UTYxgwZ1lZt5nO2myFf+/jetYQo4uTP7zS8sJY67BBxg==",
       "path": "microsoft.netcore.targets/1.1.0",
       "hashPath": "microsoft.netcore.targets.1.1.0.nupkg.sha512"
+    },
+    "Microsoft.Office.Interop.Outlook/15.0.4797.1003": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7tvZ8vtSemSxJxrarL/i3oYuha4ElXxvrjFfuWL0s5vmKVDHXjY72+Ed6S4xCPH+qDGEZYd49ObdGT7PC8BegQ==",
+      "path": "microsoft.office.interop.outlook/15.0.4797.1003",
+      "hashPath": "microsoft.office.interop.outlook.15.0.4797.1003.nupkg.sha512"
     },
     "Microsoft.Win32.Primitives/4.0.1": {
       "type": "package",

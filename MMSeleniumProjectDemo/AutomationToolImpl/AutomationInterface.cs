@@ -12,6 +12,9 @@ namespace ACSUTestAutomation.AutomationToolImpl
     public abstract class AutomationInterface
     {
         public abstract void OpenURL(string appUrl);
+        public abstract void OpenNewTabInSameBrowserInstance(string url);
+
+        public abstract void ReadAllHyperLinksandClickonSpecificHyperLink(string anchorLinkName);
         public abstract void EnterTextbyLocator(string locatorName, string pathFindlocator, string testData="");
         
         public abstract void CloseandQuitApp();
@@ -51,7 +54,10 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract String GetCurrentPageURL();
 
         public abstract void CloseDriverInstances();
-        public abstract List<String> FindChildElementText(string locatorName, string pathFindlocator);
+        public abstract List<string> FindChildElementText(string locatorName, string pathFindlocator);
+
+
+        public abstract List<string> ListofRadioorcheckbox(string locatorName, string pathFindlocator);
 
 
 
