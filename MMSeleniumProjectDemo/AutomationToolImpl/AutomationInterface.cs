@@ -23,7 +23,6 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator, string message = ""); 
         public abstract string DropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName);
 
-        public abstract List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName1,string dropdownTextName2);
         public abstract string GetElementText(string locatorName, string pathFindlocator);
         public abstract void CustomImplicitWait(int seconds);
 
@@ -33,9 +32,9 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
         public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
 
-        public abstract string GetTextFromTable(string locatorName, string pathFindlocator,string expectedText);
+       
 
-        public abstract void ScrollPage(string scrolloption);
+       
         public abstract void ClickFirstElement(string locatorName, string pathFindlocator);
 
         public abstract void WaitTillElementAppears(string locatorName, string pathFindlocator, int timeout);
@@ -49,20 +48,33 @@ namespace ACSUTestAutomation.AutomationToolImpl
         /// <returns></returns>
         public abstract bool isChildWindowClosed();
 
-        public abstract void Doubleclick(string locatorName, string pathFindlocator);
 
-        public abstract String GetCurrentPageURL();
+     
 
         public abstract void CloseDriverInstances();
-        public abstract List<string> FindChildElementText(string locatorName, string pathFindlocator);
+
 
 
         public abstract List<string> ListofRadioorcheckbox(string locatorName, string pathFindlocator);
 
+        //----------------Need to teach------------------------
+      
+        public abstract void ScrollPage(string scrolloption);
+        public abstract List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName1, string dropdownTextName2);
+        public abstract void TaboutTextbox(string locatorName, string pathFindlocator);
+        public abstract String GetCurrentPageTitle();
+        public abstract String GetCurrentPageURL();
 
+        public abstract void Doubleclick(string locatorName, string pathFindlocator);
 
+        public abstract List<string> FindChildElementText(string locatorName, string pathFindlocator);
 
+        public abstract string GetTextFromTable(string locatorName, string pathFindlocator, string expectedText);
 
+        public abstract string GetBackgroundColor(string locatorName, string pathFindlocator);
+
+        //..............................................Not required Now............................................................................................................//
+        public abstract void SetDropDownValue(IWebElement ulElement, string text);
 
 
 

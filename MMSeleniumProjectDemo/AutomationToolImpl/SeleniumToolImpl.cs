@@ -115,26 +115,32 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
         public override void ReadAllHyperLinksandClickonSpecificHyperLink(string anchorLinkName)
         {
-            List<string> anchorsText = new List<string>();
+           
             ReadOnlyCollection<IWebElement> anchorLists = driver.FindElements(By.TagName("a"));
             foreach (var anchor in anchorLists)
             {
-                if(anchor.Text.Length>0)
-                {
-                    anchorsText.Add(anchor.Text);
-                    if (anchor.Text.Contains(anchorLinkName))
-                    {
-                        anchor.Click();
 
-                    }
+                try
+                {
+                    if (anchor.Text.Contains(anchorLinkName))
+                        anchor.Click();
                 }
-              
+                catch(StaleElementReferenceException e)
+                {
+                    Console.WriteLine(e);
+                }
+
+
+
+
+
             }
 
-            logger.Info("" + anchorsText);
            
 
         }
+
+
 
 
         public override string TakeScreenshot(string screenshotName)
@@ -148,8 +154,8 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             string localpath = new Uri(finalpth).LocalPath;
             screenshot.SaveAsFile(localpath, ScreenshotImageFormat.Png);
             return localpath;
-
         }
+
 
         public override bool SelectingCheckBox_RadioButton(string locatorName, string pathFindlocator, string message = "")
         {
@@ -209,12 +215,13 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
 
             return uiText;
         }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="seconds"></param>
         public override void CustomImplicitWait(int seconds)
         {
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(seconds);
-
-           
 
         }
 
@@ -503,10 +510,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
         }
 
 
-        public override String GetCurrentPageURL()
-        {
-            return driver.Url;
-        }
+
 
         public override void CloseDriverInstances()
         {
@@ -548,11 +552,49 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
         }
 
 
+        /// <summary>
+        ///     This method will return the current page title. 
+        /// </summary>
+        /// <returns></returns>
+        public override String GetCurrentPageTitle()
+        {
+            return driver.Title;
+        }
+
+        /// <summary>
+        ///     This method will return the Current page URL.
+        /// </summary>
+        /// <returns></returns>
+        public override String GetCurrentPageURL()
+        {
+            return driver.Url;
+        }
+
+        public void SwitchToWindow(int index)
+        {
+            IList<string> windows = new List<string>(driver.WindowHandles);
+
+            driver.SwitchTo().Window(windows[index]);
+        }
 
 
+        public override void TaboutTextbox(string locatorName, string pathFindlocator)
+        {
+            IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
+            element.SendKeys(Keys.Tab);
 
+        }
 
+        public override string GetBackgroundColor(string locatorName, string pathFindlocator)
+        {
 
+            IWebElement element = driver.FindElement(GetLocator(locatorName, pathFindlocator));
+
+            string bgcolor = element.GetCssValue("background-color").ToString();
+
+            return bgcolor;
+
+        }
 
 
 
@@ -572,6 +614,7 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             else
                 return elements;
         }
+
 
         private By GetLocator(string locatorName, string pathFindlocator)
         {
@@ -596,6 +639,24 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             }
 
             return null;
+        }
+
+        public override void SetDropDownValue(IWebElement ulElement, string text)
+        {
+            IList<IWebElement> elements = new List<IWebElement>();
+
+            var liItems = ulElement.FindElements(By.ClassName("k-item"));
+
+            var javaScriptExecutor = (IJavaScriptExecutor)driver;
+            foreach (var item in liItems)
+            {
+                var dropDownText = javaScriptExecutor.ExecuteScript("return arguments[0].innerText;", item).ToString();
+                if (dropDownText == text)
+                {
+                    javaScriptExecutor.ExecuteScript("arguments[0].click()", item);
+                    break;
+                }
+            }
         }
 
 

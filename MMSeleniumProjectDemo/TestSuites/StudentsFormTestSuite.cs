@@ -10,16 +10,18 @@ using System.Collections.Generic;
 using System.IO;
 using MMSeleniumProjectDemo.TestData;
 using System.Collections.ObjectModel;
+using System.Data;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
     [TestFixture]
+
     public class StudentsFormTestSuite : TestModuleBase
     {
 
         
         string appUrl2 = ConfigurationManager.AppSettings["AppUrl2"];
-        string browser = ConfigurationManager.AppSettings["Browser"];
+  
         string excelPath = ConfigurationManager.AppSettings["Excelpath"];
         string sheetName = ConfigurationManager.AppSettings["sheetName"];
 
@@ -35,6 +37,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [SetUp]
+        [Parallelizable]
         public void SetUp()
         {
 
@@ -43,6 +46,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+  
         public void UUTestPractice_Students_Form_RadiobuttonByUsingLIst()
         {
           List<string> radiobutonscontrainer=  wrapperFunctions.ListofRadioorcheckbox("classname", "radio-inline");
@@ -55,10 +59,25 @@ namespace MMSeleniumProjectDemo.TestSuites
 
 
         }
+        [Test]
+        public void DBconnectionTest()
+        {
+            String dbType = "ACSU";
+            String envNum = ConfigurationManager.AppSettings["environment"];
+            String dbName = ConfigurationManager.AppSettings[dbType + "_" + envNum];
+            String dbServer = ConfigurationManager.AppSettings[dbType + "_Server"];
+
+            String dbEditAdmissionSource = "select * from acsuAdmissionSource where regionid = '1674'";
+
+            Thread.Sleep(15000);
+
+            DBConnect db1 = new DBConnect(dbEditAdmissionSource, dbName, dbServer);
+            DataTable dt1 = db1.ExecuteDBQuery();
+        }
 
 
 
-
+     
         [Test]
         public void UUTestPractice_Students_Form()
         {
@@ -92,6 +111,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+       
         public void UUTestPractice_Students_Select_SingleDropdownSelection()
         {
            
@@ -113,6 +133,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+      
         public void UUTestPractice_Students_Select_MultipleDropdownSelection()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[8]/a");
@@ -156,6 +177,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+     
         public void UUTestPractice_Students_Switchto_HandingIframe()
         {
             wrapperFunctions.ClickElement("xpath", "/html/body/div[1]/div/div[2]/ul/li[7]/a");
@@ -167,6 +189,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+     
         public void UUTestPractice_Students_Switchto_AlterHandling()
         {
             string expectedAlterPopwindowTex = "Hello Alert";
@@ -189,6 +212,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+       
         public void UUTestPractice_Students_Switchto_AlertConfirmHandling()
         {
             string expectedAlterPopwindowTex = "Hello Alert";
@@ -210,6 +234,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+       
         public void UUTestPractice_Students_Switchto_PromptConfirmHandling()
         {
             string expectedAlterPopwindowTex = "Hello Alert";
@@ -234,6 +259,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+        [Parallelizable]
         public void UUTestPractice_Students_Switchto_HandlingMultipleWindowHandles()
         {
             SwitchPageNavigatioin();
@@ -259,6 +285,7 @@ namespace MMSeleniumProjectDemo.TestSuites
 
 
         [Test]
+        [Parallelizable]
         public void scrollBarTest_Guru99()
         {
 
@@ -269,10 +296,11 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+        [Parallelizable]
         public void scrollBarTest_Student_Controls()
         {
 
-            wrapperFunctions.OpenURL("");
+            wrapperFunctions.OpenURL("http://www.uitestpractice.com/Students/Form");
             wrapperFunctions.ScrollPage("down");
             wrapperFunctions.ScrollPage("up");
         }

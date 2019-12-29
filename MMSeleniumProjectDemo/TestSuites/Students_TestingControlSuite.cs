@@ -38,7 +38,6 @@ namespace MMSeleniumProjectDemo.TestSuites
         public void ReadTabledata_TestingControles()
         {
             
-
             List<string> childEle = wrapperFunctions.FindChildElementText("xpath", "//div[1]/table/tbody");
 
             foreach (var item in childEle)
