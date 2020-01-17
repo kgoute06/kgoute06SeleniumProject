@@ -29,7 +29,7 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract void SwitchToFrame(string frameName);
         public abstract string GetTextOnAlert();
         public abstract string PromptAlert(string TestdataforPromptTextbox);
-
+        public abstract void TaboutTextbox(string locatorName, string pathFindlocator);
         public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
 
        
@@ -48,24 +48,20 @@ namespace ACSUTestAutomation.AutomationToolImpl
         /// <returns></returns>
         public abstract bool isChildWindowClosed();
 
-
-     
-
         public abstract void CloseDriverInstances();
-
 
 
         public abstract List<string> ListofRadioorcheckbox(string locatorName, string pathFindlocator);
 
-        //----------------Need to teach------------------------
+       
       
         public abstract void ScrollPage(string scrolloption);
         public abstract List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName1, string dropdownTextName2);
-        public abstract void TaboutTextbox(string locatorName, string pathFindlocator);
+        
         public abstract String GetCurrentPageTitle();
         public abstract String GetCurrentPageURL();
 
-        public abstract void Doubleclick(string locatorName, string pathFindlocator);
+       
 
         public abstract List<string> FindChildElementText(string locatorName, string pathFindlocator);
 
@@ -73,8 +69,26 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
         public abstract string GetBackgroundColor(string locatorName, string pathFindlocator);
 
+        public abstract string GettextByUsingTagName(string tagName);
+
         //..............................................Not required Now............................................................................................................//
         public abstract void SetDropDownValue(IWebElement ulElement, string text);
+
+        //-------------------------Actions Class............................................................
+        public abstract void Doubleclick(string locatorName, string pathFindlocator);
+
+        public abstract string HandlingActionsClasses(string sourcelocatorName, string sourcePathFindlocator, string targelocatorName, string targetPathFindlocator);
+
+        //......................................................................
+
+        public abstract bool VerifyElementPresentInUI(string locatorName, string pathFindlocator);
+
+        //=--------------------------------
+
+        public abstract void HandlingAjaxCall(int timeout);
+
+
+
 
 
 

@@ -35,9 +35,32 @@ namespace MMSeleniumProjectDemo.TestSuites
 
         [Test]
 
-        public void JsTest()
+        public void ActionClassDragAndDrop()
         {
+            wrapperFunctions.CustomImplicitWait(20);
+            wrapperFunctions.ReadAllHyperLinksandClickonSpecificHyperLink("Actions");
+            wrapperFunctions.CustomImplicitWait(20);
+            string actualDestinationPlace= wrapperFunctions.HandlingActionsClasses("id", "draggable", "id", "droppable");
+            if(actualDestinationPlace.Equals("Dropped!"))
+            {
+                Console.WriteLine("working fine");
+            }
 
+
+        }
+
+        [Test]
+
+        public void ButtonBoolVerification()
+        {
+            wrapperFunctions.CustomImplicitWait(20);
+            wrapperFunctions.ReadAllHyperLinksandClickonSpecificHyperLink("Actions");
+            wrapperFunctions.CustomImplicitWait(20);
+            bool uiEelement=wrapperFunctions.VerifyElementPresentInUI("xpath", "//div[1]/button[2]");
+            if(uiEelement)
+            {
+                Console.WriteLine("Element is present");
+            }
         }
 
 
@@ -49,6 +72,17 @@ namespace MMSeleniumProjectDemo.TestSuites
         }
 
         [Test]
+        public void BackgroundColorTest()
+        {
+            wrapperFunctions.CustomImplicitWait(20);
+            wrapperFunctions.ReadAllHyperLinksandClickonSpecificHyperLink("Actions");
+            wrapperFunctions.CustomImplicitWait(20);
+            string backgrondColovrValue= wrapperFunctions.GetBackgroundColor("id", "div2");
+            if(backgrondColovrValue.Equals("rgba(0, 0, 255, 1)"))
+            {
+                Console.WriteLine("working fine");
+            }
+        }
 
         public void DBTest1()
         {

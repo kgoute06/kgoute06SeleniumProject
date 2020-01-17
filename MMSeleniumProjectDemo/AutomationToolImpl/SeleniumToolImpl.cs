@@ -659,6 +659,57 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             }
         }
 
+        public override string GettextByUsingTagName(string tagName)
+        {
+            IWebElement text = driver.FindElement(By.TagName(tagName));
+            string gettextfromURL = text.Text;
+
+            return gettextfromURL;
+
+        }
+
+        public override string HandlingActionsClasses(string sourcelocatorName, string sourcePathFindlocator,string targelocatorName, string targetPathFindlocator)
+        {
+            IWebElement sourcePlace = driver.FindElement(GetLocator(sourcelocatorName, sourcePathFindlocator));
+            IWebElement dropIntoplace = driver.FindElement(GetLocator(targelocatorName,targetPathFindlocator));
+
+            // Wait until all event handlers are installed.
+           
+
+            Actions actionProvider = new Actions(driver);
+            actionProvider.DragAndDrop(sourcePlace, dropIntoplace).Perform();
+
+            string destinationtext = dropIntoplace.FindElement(By.TagName("p")).Text;
+
+            return destinationtext;
+
+
+
+        }
+
+        public override bool VerifyElementPresentInUI(string locatorName, string pathFindlocator)
+        {
+          bool element = driver.FindElement(GetLocator(locatorName, pathFindlocator)).Displayed;
+
+            return element;         
+
+            
+        }
+
+        public override void HandlingAjaxCall(int timeout)
+        {
+            timeout = 40;
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            while (true)
+            {
+                if (sw.Elapsed.Seconds > timeout) throw new Exception("Timeout");
+                var ajaxIsComplete = (bool)((IJavaScriptExecutor)driver).ExecuteScript("return jQuery.active == 0");
+                if (ajaxIsComplete)
+                    break;
+                Thread.Sleep(100);
+            }
+        }
 
 
     }
