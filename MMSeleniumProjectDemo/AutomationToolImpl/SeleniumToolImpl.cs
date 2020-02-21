@@ -711,7 +711,10 @@ namespace MMSeleniumProjectDemo.AutomationToolImpl
             }
         }
 
-
+        public override IWebElement FluentWaitTest(int seconds)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

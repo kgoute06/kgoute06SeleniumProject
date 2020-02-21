@@ -28,7 +28,7 @@ namespace MMSeleniumProjectDemo.TestSuites
         [OneTimeSetUp]
         public void TestFixtureSetUp()
         {
-            testrepo.CreateTest("NUnitTestFrameworkWithMucuryApp");
+            testrepo.CreateTest("NUnitTestFrameworkWithMucuryApp1");
         }
 
         [SetUp]

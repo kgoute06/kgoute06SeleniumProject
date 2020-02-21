@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Configuration;
+using System.Net.Http;
 using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MMSeleniumProjectDemo.TestUtils;
 using NUnit.Framework;
+using RestSharp;
+using Assert = NUnit.Framework.Assert;
 
 namespace MMSeleniumProjectDemo.TestSuites
 {
@@ -49,10 +52,35 @@ namespace MMSeleniumProjectDemo.TestSuites
             NUnit.Framework.Assert.IsTrue(expectedResult.Equals(displayedResponse));
         }
 
+        [TestMethod]
+        public void Test_GetWeatherInfo()
+        {
+            //Creating Client connection 
+            RestClient restClient = new RestClient("http://restapi.demoqa.com/utilities/weather/city/");
+
+            //Creating request to get data from server
+            RestRequest restRequest = new RestRequest("Guntur", Method.GET);
+
+            // Executing request to server and checking server response to the it
+            IRestResponse restResponse = restClient.Execute(restRequest);
+
+            // Extracting output data from received response
+            string response = restResponse.Content;
+
+            // Verifiying reponse
+            if (!response.Contains("Guntur"))
+      
+                      Assert.Fail("Whether information is not displayed");
+        }
+
+
+
         [TearDown]
         public void Teardown()
         {
             wrapperFunctions.CloseandQuitApp();
         }
+
+
     }
 }

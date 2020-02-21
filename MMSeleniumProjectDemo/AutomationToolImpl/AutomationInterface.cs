@@ -12,7 +12,7 @@ namespace ACSUTestAutomation.AutomationToolImpl
     public abstract class AutomationInterface
     {
         public abstract void OpenURL(string appUrl);
-        public abstract void OpenNewTabInSameBrowserInstance(string url);
+        
 
         public abstract void ReadAllHyperLinksandClickonSpecificHyperLink(string anchorLinkName);
         public abstract void EnterTextbyLocator(string locatorName, string pathFindlocator, string testData="");
@@ -26,15 +26,15 @@ namespace ACSUTestAutomation.AutomationToolImpl
         public abstract string GetElementText(string locatorName, string pathFindlocator);
         public abstract void CustomImplicitWait(int seconds);
 
+     
+        
+        public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
+
+        //-------------------------------------Alert
         public abstract void SwitchToFrame(string frameName);
         public abstract string GetTextOnAlert();
         public abstract string PromptAlert(string TestdataforPromptTextbox);
-        public abstract void TaboutTextbox(string locatorName, string pathFindlocator);
-        public abstract void SwitchBetweenDifferentWindows(string windowTitle, int timeout = 90);
-
-       
-
-       
+        //----------------------------------------------------------------------
         public abstract void ClickFirstElement(string locatorName, string pathFindlocator);
 
         public abstract void WaitTillElementAppears(string locatorName, string pathFindlocator, int timeout);
@@ -55,19 +55,17 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
        
       
-        public abstract void ScrollPage(string scrolloption);
+      
         public abstract List<string> MultipleDropdownSelectByText(string locatorName, string pathFindlocator, string dropdownTextName1, string dropdownTextName2);
         
         public abstract String GetCurrentPageTitle();
         public abstract String GetCurrentPageURL();
 
-       
-
         public abstract List<string> FindChildElementText(string locatorName, string pathFindlocator);
 
         public abstract string GetTextFromTable(string locatorName, string pathFindlocator, string expectedText);
 
-        public abstract string GetBackgroundColor(string locatorName, string pathFindlocator);
+    
 
         public abstract string GettextByUsingTagName(string tagName);
 
@@ -76,16 +74,26 @@ namespace ACSUTestAutomation.AutomationToolImpl
 
         //-------------------------Actions Class............................................................
         public abstract void Doubleclick(string locatorName, string pathFindlocator);
-
         public abstract string HandlingActionsClasses(string sourcelocatorName, string sourcePathFindlocator, string targelocatorName, string targetPathFindlocator);
-
+        public abstract string GetBackgroundColor(string locatorName, string pathFindlocator);
         //......................................................................
 
-        public abstract bool VerifyElementPresentInUI(string locatorName, string pathFindlocator);
+        
+
+        public abstract IWebElement FluentWaitTest(int seconds);
 
         //=--------------------------------
 
         public abstract void HandlingAjaxCall(int timeout);
+
+   
+
+        //----A
+        public abstract void ScrollPage(string scrolloption);
+        public abstract void OpenNewTabInSameBrowserInstance(string url);
+        public abstract void TaboutTextbox(string locatorName, string pathFindlocator);
+        public abstract bool VerifyElementPresentInUI(string locatorName, string pathFindlocator);
+
 
 
 

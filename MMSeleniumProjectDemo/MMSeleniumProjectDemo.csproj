@@ -56,6 +56,9 @@
     <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
       <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
+    <Reference Include="Json.Net, Version=1.0.18.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.18\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -102,6 +105,9 @@
     <Reference Include="RazorEngine, Version=3.10.0.0, Culture=neutral, PublicKeyToken=9ee697374c7e744a, processorArchitecture=MSIL">
       <HintPath>..\packages\RazorEngine.3.10.0\lib\net45\RazorEngine.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp, Version=106.0.0.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.10.1\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="SeleniumExtras.WaitHelpers, Version=3.11.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetSeleniumExtras.WaitHelpers.3.11.0\lib\net45\SeleniumExtras.WaitHelpers.dll</HintPath>
     </Reference>
@@ -109,6 +115,9 @@
     <Reference Include="System.Buffers, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.3.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.Composition.Registration" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
@@ -119,9 +128,12 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="TATASeleniumImpl">
       <HintPath>..\..\..\..\..\..\Old Machine Backup\ACSUData\KC_Selenium\KC-html5-automation-suite_kkk\KCHTML5AutomationSuite\KC.HTML5.AutomationSuite\External Libraries\TATASeleniumImpl.dll</HintPath>
     </Reference>
@@ -149,15 +161,24 @@
     <Compile Include="TestData\TestDataforStudentForm.cs" />
     <Compile Include="TestModels\Student_TestingControlModel.cs" />
     <Compile Include="TestSuites\StudentsFormTestSuite.cs" />
+    <Compile Include="TestSuites\StudentSwithSuite.cs" />
     <Compile Include="TestSuites\Students_TestingControlSuite.cs" />
     <Compile Include="TestSuites\Student_ControlTestSuite.cs" />
+    <Compile Include="TestSuites\WebApiTestsuit2.cs" />
+    <Compile Include="TestSuites\WeatherApiTestSuite.cs" />
     <Compile Include="TestSuites\WebTableHandlingSuite.cs" />
+    <Compile Include="TestUtils\ApiResponse.cs" />
     <Compile Include="TestUtils\CommonUtils.cs" />
+    <Compile Include="TestUtils\DBConnect.cs" />
+    <Compile Include="TestUtils\DBTestDataReader.cs" />
     <Compile Include="TestUtils\ExcelDataReading_MicrosoftOfficeInteropExcel.cs" />
     <Compile Include="TestUtils\ExcelLibrary.cs" />
+    <Compile Include="TestUtils\ITestDataReader.cs" />
     <Compile Include="TestUtils\SeleniuimUtilies.cs" />
+    <Compile Include="TestUtils\TestDataUtils.cs" />
     <Compile Include="TestUtils\TestModuleBase.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="TestUtils\TextTestDataReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config">

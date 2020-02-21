@@ -24,11 +24,7 @@ namespace MMSeleniumProjectDemo
         ExtentTest testlogs;
 
 
-        [OneTimeSetUp]
-        public void TestFixtureSetUp()
-        {
-            testrepo.CreateTest("NUnitTestFrameworkWithMucuryApp");
-        }
+    
 
         [SetUp]
         public void SetUp()
@@ -37,10 +33,17 @@ namespace MMSeleniumProjectDemo
           wrapperFunctions.OpenURL(appUrl);
         }
 
+        [Test]
+
+        public void GettextfromUI()
+        {
+            string text = wrapperFunctions.GetElementText("xpath", "/html/body/div/table/tbody/tr/td[2]/table/tbody/tr[4]/td/table/tbody/tr/td[2]/table/tbody/tr[2]/td[3]/form/table/tbody/tr[3]/td[1]/img");
+        }
+
         [Test][Category("kgoute")]
         public void MecuryLognwithNUnitTest()
         {
-         
+            
             Thread.Sleep(5000);
             logger.Info("Entering the UserName");
             wrapperFunctions.EnterTextbyLocator("Name", MercuryloginPageLocator.mUserNamelocator, uName);
@@ -52,12 +55,30 @@ namespace MMSeleniumProjectDemo
 
         }
 
+        [Test]
+        [Category("kgoute")]
+        public void MecuryLognwithNUnitTest_Failed()
+        {
+          
+            Thread.Sleep(5000);
+            logger.Info("Entering the UserName");
+            wrapperFunctions.EnterTextbyLocator("Name", MercuryloginPageLocator.mUserNamelocator, uName);
+            logger.Info(" Entering the Password");
+            wrapperFunctions.EnterTextbyLocator("Name", MercuryloginPageLocator.passwordlocator, password);
+            logger.Info("Clicking on Login button");
+            wrapperFunctions.ClickElement("Name", MercuryloginPageLocator.loginLocator);
+
+            Assert.Fail();
+
+
+        }
+
 
         [Test]
         [Category("kgoute")]
         public void MecuryLognwithNUnitTest1()
         {
-
+            testrepo.CreateTest("MecuryLoginFailedone");
             Thread.Sleep(5000);
             logger.Info("Entering the UserName");
             wrapperFunctions.EnterTextbyLocator("Name", MercuryloginPageLocator.mUserNamelocator, uName);
@@ -66,7 +87,7 @@ namespace MMSeleniumProjectDemo
             logger.Info("Clicking on Login button");
             wrapperFunctions.ClickElement("Name", MercuryloginPageLocator.loginLocator);
             
-            Assert.True(false);
+            Assert.True(true);
 
 
 
@@ -77,6 +98,7 @@ namespace MMSeleniumProjectDemo
         [TearDown]
         public void TearDown()
         {
+            testrepo.CreateTest("MecuryLoginFailedone");
             wrapperFunctions.TakeScreenshot("MecuryLoginscreenshot");
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             var stackTrace = "<pre>" + TestContext.CurrentContext.Result.StackTrace + "<pre>";
@@ -89,6 +111,7 @@ namespace MMSeleniumProjectDemo
         [OneTimeTearDown]
         public void TestFixtureTearDown()
         {
+            testrepo.CreateTest("MecuryLoginFailedone");
             testrepo.Flush();
             wrapperFunctions.CloseandQuitApp();
         }
